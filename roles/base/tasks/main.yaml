@@ -1,0 +1,22 @@
+- name: Routine flow
+  block:
+  become: yes
+    - name: Ensure directories presence
+      tasks_from: pathfinder.yaml
+      when: dirs is defined
+
+    - name: Ensure files presence
+      tasks_from: files_delivery.yaml
+      when: files is defined
+
+    - name: Ensure templates presence
+      tasks_from: templates_delivery.yaml
+      when: templates is defined
+
+    - name: Ensure nftables module presence
+      tasks_from: nftables_management.yaml
+      when: templates.nftables is defined or files.nftables is defined
+
+- name: Ensure service state
+  tasks_from: service_management.yaml
+  when: service.name != 'none'

@@ -1,0 +1,5 @@
+- systemd_service:
+    name: nftables
+    scope: 'system'
+    state: restarted
+    enabled: yes

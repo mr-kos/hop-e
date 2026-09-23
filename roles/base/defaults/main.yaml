@@ -1,0 +1,19 @@
+service_dir: '/home/{{ ansible_user }}/{{ service_name }}'
+
+service:
+  name: 'none'
+  scope: 'system'
+  enabled: yes
+  state: restarted
+
+dirs:
+  metrics_root:
+    path: '/opt/metrics/'
+    owner: root
+    group: root
+    mode: '0755'
+  nftables_root:
+    path: '/etc/nftables.d/'
+    owner: root
+    group: root
+    mode: '0755'

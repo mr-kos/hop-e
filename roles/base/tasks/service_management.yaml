@@ -1,0 +1,7 @@
+- systemd_service:
+    daemon-reload: yes
+    name: '{{ service.name }}'
+    scope: '{{ service.scope }}'
+    enabled: '{{ service.enabled }}'
+    state: '{{ service.state }}'
+  become: '{% if service.scope == "system" %}yes{% else %}no{% endif %}'
